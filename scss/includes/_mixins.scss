@@ -13,9 +13,9 @@
 @mixin calc-reflex-columns($index, $class, $type) {
     @if $type == width and $index > 0 {
         .#{$reflex-prefix}#{$class}#{$index} {
-            width: percentage(($index / $reflex-columns));
+            width: math.percentage(math.div($index, $reflex-columns));
             @if $legacy-support == true {
-                *width: math.div($index, $reflex-columns) - .1; // ie7 css hack
+                *width: math.percentage(math.div($index, $reflex-columns)) - .1; // ie7 css hack
             }
         }
     }
@@ -108,12 +108,9 @@
     $offset: ($index / $reflex-columns);
     // convert to percentage only if not zero
     @if $offset != 0 {
-        $offset: percentage($offset);
+        $offset: math.percentage($offset);
     }
     margin-left: $offset;
-    @if $legacy-support == true {
-        *margin-left: math.div($index, $reflex-columns) - .1; // ie7 css hack
-    }
 }
 
 @mixin make-offset-helpers() {
