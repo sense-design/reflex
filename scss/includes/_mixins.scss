@@ -15,7 +15,7 @@
         .#{$reflex-prefix}#{$class}#{$index} {
             width: percentage(($index / $reflex-columns));
             @if $legacy-support == true {
-                *width: percentage(($index / $reflex-columns)) - .1; // ie7 css hack
+                *width: math.div($index, $reflex-columns) - .1; // ie7 css hack
             }
         }
     }
@@ -112,7 +112,7 @@
     }
     margin-left: $offset;
     @if $legacy-support == true {
-        *margin-left: percentage(($index / $reflex-columns)) - .1; // ie7 css hack
+        *margin-left: math.div($index, $reflex-columns) - .1; // ie7 css hack
     }
 }
 
